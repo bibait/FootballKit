@@ -25,10 +25,38 @@ struct FootballMatchTests {
         }
     }
     
+    @Test
+    func start_withSecondPassed_notifiesCaller() async {
+        let homeTeam = FootballTeam()
+        let awayTeam = FootballTeam()
+        let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
+        let timer = FakeTimer()
+        sut.timer = timer
+        
+        await confirmation { confirmation in
+            sut.start { receivedTimeLeft in
+                #expect(receivedTimeLeft == 59)
+                confirmation()
+            }
+            
+            timer.callOnSecondPassed(timeLeft: 59)
+        }
+    }
+    
     // MARK: - Helpers
     
-    private struct FakeTimer: Timer {
-        
+    private class FakeTimer: Timer {
+        private var _onSecondPassed: ((Int) -> Void)?
+
+        func start(
+            onSecondPassed: @escaping (Int) -> Void
+        ) {
+            _onSecondPassed = onSecondPassed
+        }
+
+        func callOnSecondPassed(timeLeft: Int) {
+            _onSecondPassed?(timeLeft)
+        }
     }
 
 }

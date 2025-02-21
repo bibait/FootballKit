@@ -2,7 +2,11 @@ public struct FootballTeam {
     public init() {}
 }
 
-public protocol Timer {}
+public protocol Timer {
+    func start(
+        onSecondPassed: @escaping (Int) -> Void
+    )
+}
 
 public class FootballMatch {
     private let _homeTeam: FootballTeam
@@ -24,6 +28,6 @@ public class FootballMatch {
     public func start(
         onSecondPassed: @escaping (Int) -> Void
     ) {
-        
+        timer.start(onSecondPassed: onSecondPassed)
     }
 }
