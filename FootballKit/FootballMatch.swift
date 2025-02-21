@@ -21,7 +21,8 @@ public class FootballMatch {
     ) {
         timer.start(
             duration: _duration,
-            onSecondPassed: onSecondPassed
+            onSecondPassed: onSecondPassed,
+            onMatchEnded: onMatchEnded
         )
     }
 }

@@ -52,6 +52,20 @@ struct FootballMatchTests {
         }
     }
     
+    @Test
+    func start_withMatchEnded_notifiesCaller() async {
+        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        
+        await confirmation { confirmation in
+            sut.start { _ in
+            } onMatchEnded: {
+                confirmation()
+            }
+            
+            timer.callMatchEnded()
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -83,19 +97,26 @@ struct FootballMatchTests {
     
     private class StubTimer: Timer {
         private var _onSecondPassed: ((Int) -> Void)?
+        private var _onMatchEnded: (() -> Void)?
         
         var receivedDuration: Int?
 
         func start(
             duration: Int,
-            onSecondPassed: @escaping (Int) -> Void
+            onSecondPassed: @escaping (Int) -> Void,
+            onMatchEnded: @escaping () -> Void
         ) {
             receivedDuration = duration
             _onSecondPassed = onSecondPassed
+            _onMatchEnded = onMatchEnded
         }
 
         func callOnSecondPassed(timeLeft: Int) {
             _onSecondPassed?(timeLeft)
+        }
+        
+        func callMatchEnded() {
+            _onMatchEnded?()
         }
     }
 
