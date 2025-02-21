@@ -1,4 +1,4 @@
-class FoundationTimer: Timer {
+class DummyTimer: Timer {
     func start(onSecondPassed: @escaping (Int) -> Void) {
         
     }

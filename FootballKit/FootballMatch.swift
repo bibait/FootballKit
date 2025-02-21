@@ -23,7 +23,7 @@ public class FootballMatch {
         _duration = duration
     }
     
-    internal var timer: Timer = FoundationTimer()
+    internal var timer: Timer = DummyTimer()
     
     public func start(
         onSecondPassed: @escaping (Int) -> Void
