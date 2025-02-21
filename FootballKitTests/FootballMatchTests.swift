@@ -5,9 +5,7 @@ struct FootballMatchTests {
     
     @Test
     func start_withNoSecondPassed_doesNotNotifyCaller() async {
-        let homeTeam = makeHomeTeam()
-        let awayTeam = makeAwayTeam()
-        let (sut, _) = makeSUT(homeTeam: homeTeam, awayTeam: awayTeam)
+        let (sut, _) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam())
         
         await confirmation(expectedCount: 0) { confirmation in
             sut.start { _ in
@@ -18,9 +16,7 @@ struct FootballMatchTests {
     
     @Test
     func start_withSecondPassed_notifiesCaller() async {
-        let homeTeam = makeHomeTeam()
-        let awayTeam = makeAwayTeam()
-        let (sut, timer) = makeSUT(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
+        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
         
         await confirmation { confirmation in
             sut.start { receivedTimeLeft in
