@@ -4,6 +4,15 @@ import Testing
 struct FootballMatchTests {
     
     @Test
+    func start_startsTimerWithGivenDuration() {
+        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        
+        sut.start { _ in }
+        
+        #expect(timer.receivedDuration == 60)
+    }
+    
+    @Test
     func start_withNoSecondPassed_doesNotNotifyCaller() async {
         let (sut, _) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam())
         
@@ -59,10 +68,14 @@ struct FootballMatchTests {
     
     private class StubTimer: Timer {
         private var _onSecondPassed: ((Int) -> Void)?
+        
+        var receivedDuration: Int?
 
         func start(
+            duration: Int,
             onSecondPassed: @escaping (Int) -> Void
         ) {
+            receivedDuration = duration
             _onSecondPassed = onSecondPassed
         }
 

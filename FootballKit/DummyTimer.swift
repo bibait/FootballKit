@@ -1,5 +1,8 @@
 class DummyTimer: Timer {
-    func start(onSecondPassed: @escaping (Int) -> Void) {
+    func start(
+        duration: Int,
+        onSecondPassed: @escaping (Int) -> Void
+    ) {
         
     }
 }

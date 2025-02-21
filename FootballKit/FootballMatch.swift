@@ -18,6 +18,6 @@ public class FootballMatch {
     public func start(
         onSecondPassed: @escaping (Int) -> Void
     ) {
-        timer.start(onSecondPassed: onSecondPassed)
+        timer.start(duration: _duration, onSecondPassed: onSecondPassed)
     }
 }
