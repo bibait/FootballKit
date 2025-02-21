@@ -4,4 +4,6 @@ public protocol Timer {
         onSecondPassed: @escaping (Int) -> Void,
         onMatchEnded: @escaping () -> Void
     )
+    
+    func cancel()
 }

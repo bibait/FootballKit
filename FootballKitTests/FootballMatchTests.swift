@@ -71,6 +71,18 @@ final class FootballMatchTests {
         }
     }
     
+    @Test
+    func matchEnded_cancelsTimer() {
+        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam())
+        
+        sut.start { _ in
+        } onMatchEnded: { }
+        
+        timer.callMatchEnded()
+        
+        #expect(timer.actions == [.start, .cancel])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -111,6 +123,12 @@ final class FootballMatchTests {
         private var _onMatchEnded: (() -> Void)?
         
         var receivedDuration: Int?
+        
+        var actions = [Action]()
+        
+        enum Action: Equatable {
+            case start, cancel
+        }
 
         func start(
             duration: Int,
@@ -120,6 +138,11 @@ final class FootballMatchTests {
             receivedDuration = duration
             _onSecondPassed = onSecondPassed
             _onMatchEnded = onMatchEnded
+            actions.append(.start)
+        }
+        
+        func cancel() {
+            actions.append(.cancel)
         }
 
         func callOnSecondPassed(timeLeft: Int) {

@@ -22,7 +22,13 @@ public class FootballMatch {
         timer.start(
             duration: _duration,
             onSecondPassed: onSecondPassed,
-            onMatchEnded: onMatchEnded
+            onMatchEnded: { [weak self] in
+                guard let self = self else { return
+                }
+                
+                onMatchEnded()
+                self.timer.cancel()
+            }
         )
     }
 }
