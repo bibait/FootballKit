@@ -141,6 +141,23 @@ final class FootballMatchTests {
         #expect(timer.actions == [.cancel])
     }
     
+    @Test
+    func score_incrementsByOne() {
+        let homeTeam = makeHomeTeam()
+        let awayTeam = makeHomeTeam()
+        let (sut, _) = makeSUT(
+            homeTeam: homeTeam,
+            awayTeam: awayTeam
+        )
+        
+        sut.scoreHomeTeam()
+        sut.scoreHomeTeam()
+        sut.scoreAwayTeam()
+        
+        #expect(sut.getHomeTeamScore() == 2)
+        #expect(sut.getAwayTeamScore() == 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
