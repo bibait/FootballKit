@@ -7,7 +7,7 @@ struct FootballMatchTests {
     func canInit() {
         let homeTeam = FootballTeam()
         let awayTeam = FootballTeam()
-        let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam)
+        let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
         sut.timer = FakeTimer()
     }
     
