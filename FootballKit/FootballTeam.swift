@@ -7,9 +7,9 @@ public class FootballTeam {
     
     private var currentScore = 0
     
-    func score() { currentScore += 1 }
+    internal func score() { currentScore += 1 }
     
-    func removeGoal() {
+    internal func removeGoal() {
         guard currentScore > 0 else {
             return
         }
@@ -17,7 +17,7 @@ public class FootballTeam {
         currentScore -= 1
     }
     
-    func getScore() -> Int { currentScore }
+    internal func getScore() -> Int { currentScore }
     
-    func getName() -> String { _name }
+    internal func getName() -> String { _name }
 }
