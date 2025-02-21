@@ -1,7 +1,12 @@
 import Testing
 @testable import FootballKit
 
-struct FootballMatchTests {
+final class FootballMatchTests {
+    private var sutTracker: MemoryLeakTracker<FootballMatch>?
+    
+    deinit {
+        sutTracker?.verify()
+    }
     
     @Test
     func start_startsTimerWithGivenDuration() {
@@ -71,7 +76,10 @@ struct FootballMatchTests {
     private func makeSUT(
         homeTeam: FootballTeam,
         awayTeam: FootballTeam,
-        duration: Int = 60
+        duration: Int = 60,
+        filePath: String = #filePath,
+        line: Int = #line,
+        column: Int = #column
     ) -> (
         sut: FootballMatch,
         timer: StubTimer
@@ -83,6 +91,9 @@ struct FootballMatchTests {
         )
         let timer = StubTimer()
         sut.timer = timer
+        
+        let sourceLocation = SourceLocation(fileID: #fileID, filePath: filePath, line: line, column: column)
+        sutTracker = .init(instance: sut, sourceLocation: sourceLocation)
         
         return (sut, timer)
     }
