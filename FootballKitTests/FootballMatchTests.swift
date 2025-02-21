@@ -10,7 +10,11 @@ final class FootballMatchTests {
     
     @Test
     func start_startsTimerWithGivenDuration() {
-        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam(),
+            duration: 60
+        )
         
         sut.start { _ in
         } onMatchEnded: { }
@@ -20,7 +24,10 @@ final class FootballMatchTests {
     
     @Test
     func start_withNoSecondPassed_doesNotNotifyCaller() async {
-        let (sut, _) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam())
+        let (sut, _) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam()
+        )
         
         await confirmation(expectedCount: 0) { confirmation in
             sut.start { _ in
@@ -31,7 +38,11 @@ final class FootballMatchTests {
     
     @Test
     func start_withSecondPassed_notifiesCaller() async {
-        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam(),
+            duration: 60
+        )
         
         await confirmation { confirmation in
             sut.start { receivedTimeLeft in
@@ -45,7 +56,11 @@ final class FootballMatchTests {
     
     @Test
     func start_withMatchNotEnded_doesNotNotifyCaller() async {
-        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam(),
+            duration: 60
+        )
         
         await confirmation(expectedCount: 0) { confirmation in
             sut.start { _ in
@@ -59,7 +74,11 @@ final class FootballMatchTests {
     
     @Test
     func start_withMatchEnded_notifiesCaller() async {
-        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam(),
+            duration: 60
+        )
         
         await confirmation { confirmation in
             sut.start { _ in
@@ -73,7 +92,10 @@ final class FootballMatchTests {
     
     @Test
     func matchEnded_cancelsTimer() {
-        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam())
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam()
+        )
         
         sut.start { _ in
         } onMatchEnded: { }
