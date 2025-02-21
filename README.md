@@ -10,6 +10,10 @@ Once that completes, import FootballKit into your Swift code wherever needed:
 import FootballKit
 ```
 
+## Contributing
+
+This is my first open-source package. Any contribution is appreciated.
+
 ## License
 
 MIT License.
