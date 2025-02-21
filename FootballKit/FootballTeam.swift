@@ -9,6 +9,14 @@ public class FootballTeam {
     
     func score() { currentScore += 1 }
     
+    func removeGoal() {
+        guard currentScore > 0 else {
+            return
+        }
+        
+        currentScore -= 1
+    }
+    
     func getScore() -> Int { currentScore }
     
     func getName() -> String { _name }

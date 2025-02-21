@@ -45,6 +45,15 @@ public class FootballMatch {
         }
     }
     
+    public func removeGoal(_ team: Team) {
+        switch team {
+        case .home:
+            _homeTeam.removeGoal()
+        case .away:
+            _awayTeam.removeGoal()
+        }
+    }
+    
     public func getScore(_ team: Team) -> Int {
         switch team {
         case .home:

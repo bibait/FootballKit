@@ -173,6 +173,24 @@ final class FootballMatchTests {
         #expect(sut.getScore(.away) == 1)
     }
     
+    @Test
+    func removeGoal_doesNotGoNegative() {
+        let homeTeam = makeHomeTeam()
+        let awayTeam = makeHomeTeam()
+        let (sut, _) = makeSUT(
+            homeTeam: homeTeam,
+            awayTeam: awayTeam
+        )
+        
+        sut.removeGoal(.home)
+        sut.score(.away)
+        sut.score(.away)
+        sut.removeGoal(.away)
+        
+        #expect(sut.getScore(.home) == 0)
+        #expect(sut.getScore(.away) == 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
