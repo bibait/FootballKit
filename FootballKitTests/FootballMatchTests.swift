@@ -1,11 +1,11 @@
 import Testing
-@testable import FootballKit
+import FootballKit
 
 struct FootballMatchTests {
 
     @Test
-    func zero() {
-        
+    func canInit() {
+        _ = FootballMatch()
     }
 
 }
