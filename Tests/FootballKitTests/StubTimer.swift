@@ -1,4 +1,4 @@
-import FootballKit
+@testable import FootballKit
 
 class StubTimer: Timer {
     private var _onSecondPassed: ((Int) -> Void)?

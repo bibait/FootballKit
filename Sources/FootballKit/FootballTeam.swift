@@ -1,6 +1,7 @@
 public class FootballTeam {
     private let _name: String
-
+    
+    /// - Parameter name: The `FootballTeams` name
     public init(name: String) {
         _name = name
     }

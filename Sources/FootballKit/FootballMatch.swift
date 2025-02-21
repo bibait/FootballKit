@@ -2,7 +2,15 @@ public class FootballMatch {
     private let _homeTeam: FootballTeam
     private let _awayTeam: FootballTeam
     private let _duration: Int
-
+    
+    /// Initializes a `FootballMatch`
+    ///
+    /// > Important: Match duration is given in seconds.
+    ///
+    /// - Parameters:
+    ///   - homeTeam: The home team for the match.
+    ///   - awayTeam: The away team for the match.
+    ///   - duration: Match duration in seconds.
     public init(
         homeTeam: FootballTeam,
         awayTeam: FootballTeam,
@@ -19,6 +27,10 @@ public class FootballMatch {
         case home, away
     }
     
+    /// Starts a match.
+    /// - Parameters:
+    ///   - onSecondPassed: Called whenever a second passes with the remaining time.
+    ///   - onMatchEnded: Called when the match ended after the given duration.
     public func start(
         onSecondPassed: @escaping (Int) -> Void,
         onMatchEnded: @escaping () -> Void
@@ -37,6 +49,8 @@ public class FootballMatch {
         )
     }
     
+    /// Increments the score by one.
+    /// - Parameter team: The team that scored.
     public func score(_ team: Team) {
         switch team {
         case .home:
@@ -46,6 +60,8 @@ public class FootballMatch {
         }
     }
     
+    /// Decrements the score by one.
+    /// - Parameter team: The team from which to remove a goal.
     public func removeGoal(_ team: Team) {
         switch team {
         case .home:
@@ -55,6 +71,9 @@ public class FootballMatch {
         }
     }
     
+    /// Get the score of a team.
+    /// - Parameter team: The team whose score is retrieved.
+    /// - Returns: The number of goals for the given team.
     public func getScore(_ team: Team) -> Int {
         switch team {
         case .home:
@@ -64,6 +83,9 @@ public class FootballMatch {
         }
     }
     
+    /// Get the name of a team.
+    /// - Parameter team: The team whose name is retrieved.
+    /// - Returns: The team's name.
     public func getName(_ team: Team) -> String {
         switch team {
         case .home:
@@ -73,9 +95,18 @@ public class FootballMatch {
         }
     }
     
+    /// Pause the match.
+    ///
+    /// Stops calling `onSecondPassed` and `onMatchEnded` closure.
     public func pause() { timer.pause() }
     
+    /// Resume the match.
+    ///
+    /// Continues calling `onSecondPassed` and `onMatchEnded` closure.
     public func resume() { timer.resume() }
     
+    /// Cancel the match.
+    ///
+    /// Stops calling `onSecondPassed` and `onMatchEnded` closure.
     public func cancel() { timer.cancel() }
 }
