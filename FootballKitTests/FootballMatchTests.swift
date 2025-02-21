@@ -1,5 +1,5 @@
 import Testing
-import FootballKit
+@testable import FootballKit
 
 struct FootballMatchTests {
 
@@ -7,7 +7,14 @@ struct FootballMatchTests {
     func canInit() {
         let homeTeam = FootballTeam()
         let awayTeam = FootballTeam()
-        _ = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam)
+        let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam)
+        sut.timer = FakeTimer()
+    }
+    
+    // MARK: - Helpers
+    
+    private struct FakeTimer: Timer {
+        
     }
 
 }
