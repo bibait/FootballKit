@@ -16,8 +16,12 @@ public class FootballMatch {
     internal var timer: Timer = DummyTimer()
     
     public func start(
-        onSecondPassed: @escaping (Int) -> Void
+        onSecondPassed: @escaping (Int) -> Void,
+        onMatchEnded: @escaping () -> Void
     ) {
-        timer.start(duration: _duration, onSecondPassed: onSecondPassed)
+        timer.start(
+            duration: _duration,
+            onSecondPassed: onSecondPassed
+        )
     }
 }

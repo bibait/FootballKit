@@ -7,7 +7,8 @@ struct FootballMatchTests {
     func start_startsTimerWithGivenDuration() {
         let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
         
-        sut.start { _ in }
+        sut.start { _ in
+        } onMatchEnded: { }
         
         #expect(timer.receivedDuration == 60)
     }
@@ -19,7 +20,7 @@ struct FootballMatchTests {
         await confirmation(expectedCount: 0) { confirmation in
             sut.start { _ in
                 confirmation()
-            }
+            } onMatchEnded: { }
         }
     }
     
@@ -30,6 +31,20 @@ struct FootballMatchTests {
         await confirmation { confirmation in
             sut.start { receivedTimeLeft in
                 #expect(receivedTimeLeft == 59)
+                confirmation()
+            } onMatchEnded: { }
+            
+            timer.callOnSecondPassed(timeLeft: 59)
+        }
+    }
+    
+    @Test
+    func start_withMatchNotEnded_doesNotNotifyCaller() async {
+        let (sut, timer) = makeSUT(homeTeam: makeHomeTeam(), awayTeam: makeAwayTeam(), duration: 60)
+        
+        await confirmation(expectedCount: 0) { confirmation in
+            sut.start { _ in
+            } onMatchEnded: {
                 confirmation()
             }
             
