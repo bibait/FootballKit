@@ -1,8 +1,10 @@
-//
-//  File.swift
-//  FootballKit
-//
-//  Created by Bilal Baş on 21.02.25.
-//
+import Testing
 
-import Foundation
+struct MemoryLeakTracker<T: AnyObject> {
+    weak var instance: T?
+    var sourceLocation: SourceLocation
+    
+    func verify() {
+        #expect(instance == nil, "Expected instance to be deallocated. Potential memory leak.", sourceLocation: sourceLocation)
+    }
+}

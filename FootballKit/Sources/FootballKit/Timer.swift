@@ -1,8 +1,11 @@
-//
-//  File.swift
-//  FootballKit
-//
-//  Created by Bilal Baş on 21.02.25.
-//
-
-import Foundation
+public protocol Timer {
+    func start(
+        duration: Int,
+        onSecondPassed: @escaping (Int) -> Void,
+        onMatchEnded: @escaping () -> Void
+    )
+    
+    func pause()
+    func resume()
+    func cancel()
+}
