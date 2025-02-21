@@ -18,9 +18,9 @@ public class FootballMatch {
         awayTeam: FootballTeam,
         duration: Int
     ) {
-        self._homeTeam = homeTeam
-        self._awayTeam = awayTeam
-        self._duration = duration
+        _homeTeam = homeTeam
+        _awayTeam = awayTeam
+        _duration = duration
     }
     
     internal var timer: Timer = FoundationTimer()
