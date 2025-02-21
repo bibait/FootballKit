@@ -2,10 +2,7 @@ public struct FootballTeam {
     public init() {}
 }
 
-public protocol Timer {
-}
-
-class FoundationTimer: Timer {}
+public protocol Timer {}
 
 public class FootballMatch {
     private let _homeTeam: FootballTeam
