@@ -13,7 +13,7 @@ public class FootballMatch {
         _duration = duration
     }
     
-    internal var timer: Timer = DummyTimer()
+    internal var timer: Timer = FoundationTimer()
     
     public enum Team {
         case home, away
