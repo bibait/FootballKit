@@ -8,7 +8,7 @@ struct FootballMatchTests {
         let homeTeam = FootballTeam()
         let awayTeam = FootballTeam()
         let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
-        sut.timer = FakeTimer()
+        sut.timer = StubTimer()
     }
     
     @Test
@@ -16,7 +16,7 @@ struct FootballMatchTests {
         let homeTeam = FootballTeam()
         let awayTeam = FootballTeam()
         let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
-        sut.timer = FakeTimer()
+        sut.timer = StubTimer()
         
         await confirmation(expectedCount: 0) { confirmation in
             sut.start { _ in
@@ -30,7 +30,7 @@ struct FootballMatchTests {
         let homeTeam = FootballTeam()
         let awayTeam = FootballTeam()
         let sut = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam, duration: 60)
-        let timer = FakeTimer()
+        let timer = StubTimer()
         sut.timer = timer
         
         await confirmation { confirmation in
@@ -45,7 +45,7 @@ struct FootballMatchTests {
     
     // MARK: - Helpers
     
-    private class FakeTimer: Timer {
+    private class StubTimer: Timer {
         private var _onSecondPassed: ((Int) -> Void)?
 
         func start(
