@@ -15,6 +15,10 @@ public class FootballMatch {
     
     internal var timer: Timer = DummyTimer()
     
+    public enum Team {
+        case home, away
+    }
+    
     public func start(
         onSecondPassed: @escaping (Int) -> Void,
         onMatchEnded: @escaping () -> Void
@@ -30,6 +34,33 @@ public class FootballMatch {
                 self.timer.cancel()
             }
         )
+    }
+    
+    public func score(_ team: Team) {
+        switch team {
+        case .home:
+            _homeTeam.score()
+        case .away:
+            _awayTeam.score()
+        }
+    }
+    
+    public func getScore(_ team: Team) -> Int {
+        switch team {
+        case .home:
+            _homeTeam.getScore()
+        case .away:
+            _awayTeam.getScore()
+        }
+    }
+    
+    public func getName(_ team: Team) -> String {
+        switch team {
+        case .home:
+            _homeTeam.getName()
+        case .away:
+            _awayTeam.getName()
+        }
     }
     
     public func scoreHomeTeam() {

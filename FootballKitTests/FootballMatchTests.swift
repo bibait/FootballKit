@@ -17,10 +17,10 @@ final class FootballMatchTests {
             awayTeam: awayTeam
         )
         
-        #expect(sut.getHomeTeamName() == "Trabzonspor")
-        #expect(sut.getHomeTeamScore() == 0)
-        #expect(sut.getAwayTeamName() == "Stuttgart")
-        #expect(sut.getAwayTeamScore() == 0)
+        #expect(sut.getName(.home) == "Trabzonspor")
+        #expect(sut.getScore(.home) == 0)
+        #expect(sut.getName(.away) == "Stuttgart")
+        #expect(sut.getScore(.away) == 0)
     }
     
     @Test
@@ -165,12 +165,12 @@ final class FootballMatchTests {
             awayTeam: awayTeam
         )
         
-        sut.scoreHomeTeam()
-        sut.scoreHomeTeam()
-        sut.scoreAwayTeam()
+        sut.score(.home)
+        sut.score(.home)
+        sut.score(.away)
         
-        #expect(sut.getHomeTeamScore() == 2)
-        #expect(sut.getAwayTeamScore() == 1)
+        #expect(sut.getScore(.home) == 2)
+        #expect(sut.getScore(.away) == 1)
     }
     
     // MARK: - Helpers
