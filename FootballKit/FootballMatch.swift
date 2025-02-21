@@ -31,4 +31,8 @@ public class FootballMatch {
             }
         )
     }
+    
+    public func pause() {
+        timer.pause()
+    }
 }

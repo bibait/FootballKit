@@ -5,5 +5,6 @@ class DummyTimer: Timer {
         onMatchEnded: @escaping () -> Void
     ) { }
     
+    func pause() {}
     func cancel() {}
 }

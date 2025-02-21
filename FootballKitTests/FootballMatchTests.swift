@@ -105,6 +105,18 @@ final class FootballMatchTests {
         #expect(timer.actions == [.start, .cancel])
     }
     
+    @Test
+    func pause_pausesTimer() {
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam()
+        )
+        
+        sut.pause()
+        
+        #expect(timer.actions == [.pause])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -149,7 +161,7 @@ final class FootballMatchTests {
         var actions = [Action]()
         
         enum Action: Equatable {
-            case start, cancel
+            case start, pause, cancel
         }
 
         func start(
@@ -163,6 +175,10 @@ final class FootballMatchTests {
             actions.append(.start)
         }
         
+        func pause() {
+            actions.append(.pause)
+        }
+
         func cancel() {
             actions.append(.cancel)
         }

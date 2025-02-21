@@ -5,5 +5,6 @@ public protocol Timer {
         onMatchEnded: @escaping () -> Void
     )
     
+    func pause()
     func cancel()
 }
