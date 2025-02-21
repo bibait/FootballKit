@@ -5,7 +5,9 @@ struct FootballMatchTests {
 
     @Test
     func canInit() {
-        _ = FootballMatch()
+        let homeTeam = FootballTeam()
+        let awayTeam = FootballTeam()
+        _ = FootballMatch(homeTeam: homeTeam, awayTeam: awayTeam)
     }
 
 }
