@@ -63,30 +63,6 @@ public class FootballMatch {
         }
     }
     
-    public func scoreHomeTeam() {
-        _homeTeam.score()
-    }
-    
-    public func scoreAwayTeam() {
-        _awayTeam.score()
-    }
-    
-    public func getHomeTeamScore() -> Int {
-        _homeTeam.getScore()
-    }
-    
-    public func getAwayTeamScore() -> Int {
-        _awayTeam.getScore()
-    }
-    
-    public func getHomeTeamName() -> String {
-        _homeTeam.getName()
-    }
-    
-    public func getAwayTeamName() -> String {
-        _awayTeam.getName()
-    }
-    
     public func pause() { timer.pause() }
     
     public func resume() { timer.resume() }
