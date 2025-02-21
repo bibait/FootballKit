@@ -118,7 +118,7 @@ final class FootballMatchTests {
     }
     
     @Test
-    func resume_resumeesTimer() {
+    func resume_resumesTimer() {
         let (sut, timer) = makeSUT(
             homeTeam: makeHomeTeam(),
             awayTeam: makeAwayTeam()
@@ -127,6 +127,18 @@ final class FootballMatchTests {
         sut.resume()
         
         #expect(timer.actions == [.resume])
+    }
+    
+    @Test
+    func cancel_cancelsTimer() {
+        let (sut, timer) = makeSUT(
+            homeTeam: makeHomeTeam(),
+            awayTeam: makeAwayTeam()
+        )
+        
+        sut.cancel()
+        
+        #expect(timer.actions == [.cancel])
     }
     
     // MARK: - Helpers
