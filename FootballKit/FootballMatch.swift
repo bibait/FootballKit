@@ -27,7 +27,8 @@ public class FootballMatch {
             duration: _duration,
             onSecondPassed: onSecondPassed,
             onMatchEnded: { [weak self] in
-                guard let self = self else { return
+                guard let self = self else {
+                    return
                 }
                 
                 onMatchEnded()
