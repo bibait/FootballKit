@@ -20,4 +20,10 @@ public class FootballMatch {
     }
     
     internal var timer: Timer = FoundationTimer()
+    
+    public func start(
+        onSecondPassed: @escaping (Int) -> Void
+    ) {
+        
+    }
 }
