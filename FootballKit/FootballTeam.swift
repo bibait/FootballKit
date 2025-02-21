@@ -1,13 +1,15 @@
 public class FootballTeam {
-    public init() {}
+    private let _name: String
+
+    public init(name: String) {
+        _name = name
+    }
     
     private var currentScore = 0
     
-    func score() {
-        currentScore += 1
-    }
+    func score() { currentScore += 1 }
     
-    public func getScore() -> Int {
-        currentScore
-    }
+    func getScore() -> Int { currentScore }
+    
+    func getName() -> String { _name }
 }

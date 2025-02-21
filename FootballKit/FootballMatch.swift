@@ -48,6 +48,14 @@ public class FootballMatch {
         _awayTeam.getScore()
     }
     
+    public func getHomeTeamName() -> String {
+        _homeTeam.getName()
+    }
+    
+    public func getAwayTeamName() -> String {
+        _awayTeam.getName()
+    }
+    
     public func pause() { timer.pause() }
     
     public func resume() { timer.resume() }

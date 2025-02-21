@@ -9,6 +9,21 @@ final class FootballMatchTests {
     }
     
     @Test
+    func initialData() {
+        let homeTeam = makeHomeTeam(name: "Trabzonspor")
+        let awayTeam = makeAwayTeam(name: "Stuttgart")
+        let (sut, _) = makeSUT(
+            homeTeam: homeTeam,
+            awayTeam: awayTeam
+        )
+        
+        #expect(sut.getHomeTeamName() == "Trabzonspor")
+        #expect(sut.getHomeTeamScore() == 0)
+        #expect(sut.getAwayTeamName() == "Stuttgart")
+        #expect(sut.getAwayTeamScore() == 0)
+    }
+    
+    @Test
     func start_startsTimerWithGivenDuration() {
         let (sut, timer) = makeSUT(
             homeTeam: makeHomeTeam(),
@@ -185,12 +200,16 @@ final class FootballMatchTests {
         return (sut, timer)
     }
     
-    private func makeHomeTeam() -> FootballTeam {
-        FootballTeam()
+    private func makeHomeTeam(
+        name: String = "Home"
+    ) -> FootballTeam {
+        FootballTeam(name: name)
     }
     
-    private func makeAwayTeam() -> FootballTeam {
-        FootballTeam()
+    private func makeAwayTeam(
+        name: String = "Away"
+    ) -> FootballTeam {
+        FootballTeam(name: name)
     }
     
     private class StubTimer: Timer {
