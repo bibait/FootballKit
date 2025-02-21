@@ -35,4 +35,8 @@ public class FootballMatch {
     public func pause() {
         timer.pause()
     }
+    
+    public func resume() {
+        timer.resume()
+    }
 }

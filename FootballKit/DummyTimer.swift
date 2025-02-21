@@ -6,5 +6,6 @@ class DummyTimer: Timer {
     ) { }
     
     func pause() {}
+    func resume() {}
     func cancel() {}
 }

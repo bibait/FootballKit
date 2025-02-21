@@ -6,5 +6,6 @@ public protocol Timer {
     )
     
     func pause()
+    func resume()
     func cancel()
 }
