@@ -1,13 +1,3 @@
-public struct FootballTeam {
-    public init() {}
-}
-
-public protocol Timer {
-    func start(
-        onSecondPassed: @escaping (Int) -> Void
-    )
-}
-
 public class FootballMatch {
     private let _homeTeam: FootballTeam
     private let _awayTeam: FootballTeam
