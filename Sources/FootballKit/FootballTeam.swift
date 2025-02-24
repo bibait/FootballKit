@@ -21,4 +21,8 @@ public class FootballTeam {
     internal func getScore() -> Int { currentScore }
     
     internal func getName() -> String { _name }
+    
+    internal func setScore(_ score: Int) {
+        currentScore = score
+    }
 }

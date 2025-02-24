@@ -32,6 +32,10 @@ class FoundationTimer: Timer {
         start(duration: duration, onSecondPassed: onSecondPassed, onMatchEnded: onMatchEnded)
     }
     
+    func reset() {
+        cancel()
+    }
+    
     func cancel() {
         _timer?.invalidate()
         _timer = nil

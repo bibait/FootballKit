@@ -191,6 +191,27 @@ final class FootballMatchTests {
         #expect(sut.getScore(.away) == 1)
     }
     
+    @Test
+    func resetsMatchStats() {
+        let homeTeam = makeHomeTeam()
+        let awayTeam = makeHomeTeam()
+        let (sut, timer) = makeSUT(
+            homeTeam: homeTeam,
+            awayTeam: awayTeam
+        )
+        
+        sut.start(onSecondPassed: { _ in }, onMatchEnded: {})
+        sut.score(.home)
+        sut.score(.home)
+        sut.score(.away)
+        timer.callOnSecondPassed(timeLeft: 30)
+        sut.reset()
+        
+        #expect(sut.getScore(.home) == 0)
+        #expect(sut.getScore(.away) == 0)
+        #expect(timer.actions == [.start, .reset])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

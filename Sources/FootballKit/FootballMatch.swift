@@ -100,6 +100,15 @@ public class FootballMatch {
     /// Stops calling `onSecondPassed` and `onMatchEnded` closure.
     public func pause() { timer.pause() }
     
+    /// Resets the match.
+    ///
+    /// Resets the score and invalidates the timer.
+    public func reset() {
+        _homeTeam.setScore(0)
+        _awayTeam.setScore(0)
+        timer.reset()
+    }
+    
     /// Resume the match.
     ///
     /// Continues calling `onSecondPassed` and `onMatchEnded` closure.

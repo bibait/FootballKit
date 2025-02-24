@@ -9,7 +9,7 @@ class StubTimer: Timer {
     var actions = [Action]()
 
     enum Action: Equatable {
-        case start, pause, resume, cancel
+        case start, pause, resume, cancel, reset
     }
 
     func start(
@@ -29,6 +29,10 @@ class StubTimer: Timer {
 
     func resume() {
         actions.append(.resume)
+    }
+    
+    func reset() {
+        actions.append(.reset)
     }
 
     func cancel() {
